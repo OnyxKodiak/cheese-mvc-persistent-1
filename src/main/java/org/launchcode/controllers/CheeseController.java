@@ -113,6 +113,8 @@ public class CheeseController {
         Cheese updateCheese = cheeseDao.findOne(id);
         Category cat = categoryDao.findOne(categoryId);
         updateCheese.setCategory(cat);
+        updateCheese.setName(cheese.getName());
+        updateCheese.setDescription(cheese.getDescription());
         cheeseDao.save(updateCheese);
         return "redirect:/cheese";
     }
