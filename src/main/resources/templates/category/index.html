@@ -11,10 +11,10 @@
 <br />
 <p th:unless="${categories} and ${categories.size()}">no categories :(</p>
 <h4 th:if="${categories} and ${categories.size()}">Categories</h4>
-    <ul th:if="${categories} and ${categories.size()}">
-        <li th:each="category : ${categories}">
-            <a th:href="'/cheese/category/'+${category.id}" th:text="${category.name}"></a>
-        </li>
-    </ul>
+<ul th:if="${categories} and ${categories.size()}">
+    <li th:each="category : ${categories}">
+        <a th:href="'/cheese/category/'+${category.id}" th:text="${category.name}"></a>
+    </li>
+</ul>
 </body>
 </html>
