@@ -1,5 +1,8 @@
 package org.launchcode.models;
 
+import org.launchcode.models.data.CheeseDao;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -41,4 +44,5 @@ public class Category {
     }
 
     public List<Cheese> getCheeses(){return cheeses;}
+
 }

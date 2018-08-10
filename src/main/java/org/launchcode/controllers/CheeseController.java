@@ -93,4 +93,32 @@ public class CheeseController {
 
     }
 
+    @RequestMapping(value="edit/{cheeseId}", method = RequestMethod.GET)
+    public String displayEditForm(Model model, @PathVariable int cheeseId){
+        Cheese cheese = cheeseDao.findOne(cheeseId);
+        if(cheese!=null) {
+            model.addAttribute("title", "Edit - " + cheese.getName());
+            model.addAttribute("categories",categoryDao.findAll());
+            model.addAttribute("cheese", cheese);
+            return "cheese/edit";
+        }
+        return "redirect:/cheese";
+    }
+
+    @RequestMapping(value="edit/{cheeseId}", method = RequestMethod.POST)
+    public String processEditForm(Model model, @ModelAttribute @Valid Cheese cheese,@RequestParam int categoryId, @RequestParam int id, Errors errors){
+        if(cheese==null && errors.hasErrors()){
+            return "cheese/edit";
+        }
+        Cheese updateCheese = cheeseDao.findOne(id);
+        Category cat = categoryDao.findOne(categoryId);
+        updateCheese.setCategory(cat);
+        updateCheese.setName(cheese.getName());
+        updateCheese.setDescription(cheese.getDescription());
+        cheeseDao.save(updateCheese);
+        return "redirect:/cheese";
+    }
+
+
+
 }

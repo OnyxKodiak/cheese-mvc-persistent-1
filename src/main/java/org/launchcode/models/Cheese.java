@@ -63,4 +63,8 @@ public class Cheese {
     public Category getCategory() {
         return this.category;
     }
+
+    public boolean isMyCategory(Category category){
+        return this.category.equals(category);
+    }
 }
